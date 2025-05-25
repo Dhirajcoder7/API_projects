@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke</title>
+</head>
+<style>
+    body{padding:10vh;
+        background-color:#60B5FF;
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        align-items:center;
+    }
+    .container{
+      border:2px solid black;
+      border-radius:10px;
+      height:65vh;
+      width:55vh;
+      background-color:orange;
+      padding:0 0 15px;
+      text-align:center;
+    }
+    h1{
+      text-align:center;
+      -webkit-text-stroke:0.2px white;
+    }
+    #joke_msg{
+      font-size:1.2rem;
+      border-radius:10px;
+      height:45vh;
+      width:50vh;
+      margin:auto;
+      background-color:#0E2148;
+      color:white;
+      overflow:hidden;
+    
+    }
+    button{
+      margin-top:5px;
+      border-radius:10px;
+      color:white;
+      height:2rem;
+      width:50%;
+         background-color:#E83F25;
+     
+      transition:ease 0.5s;
+    }
+    button:hover{
+    background-color:#F75A5A;
+    box-shadow:0 0 5px black;
+    }
+</style>
+    
+<body>
+  <div class="container">
+<h1>Random Jokes !😂</h1>
+<div id="joke_msg"><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+   when an unknown printer took a galley of type and scrambled it to make a type specimen book.  remaining essentially unchanged</div>
+ <button>Show the Joke !</button>
+  </div>
+<script>
+  let URL ="https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single"
+   
+  let show_joke = document.getElementById("joke_msg");
+  let button = document.querySelector("button"); 
+
+ async function CallApi() {
+    let Responce = await fetch(URL);
+    let data = await Responce.json();
+    console.log(data);
+
+    show_joke.innerText = data.joke+"🤣";
+  }
+  button.addEventListener('click',()=>{
+    CallApi().then((res)=>{
+        console.log("Susseccfully Data Found",res);
+  }).catch((err)=>{
+    console.log("Error !",err); 
+  });;
+  })
+  //
+</script>
+</body>
+</html>
