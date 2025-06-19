@@ -6,7 +6,7 @@
     <title>Random Joke</title>
 </head>
 <style>
-    body{padding:10vh;
+    body{
         background-color:#60B5FF;
         display:flex;
         justify-content:center;
@@ -14,6 +14,7 @@
         align-items:center;
     }
     .container{
+      margin-top:10vh;
       border:2px solid black;
       border-radius:10px;
       height:65vh;
@@ -22,16 +23,27 @@
       padding:0 0 15px;
       text-align:center;
     }
+    @media (max-width: 390px) {
+      .container{
+        width:90vw;
+        height:60vh;
+        margin-top:10vh;
+      }
+    
+      
+    }
     h1{
       text-align:center;
       -webkit-text-stroke:0.2px white;
     }
     #joke_msg{
+      padding:0 10px 0 10px;
       font-size:1.2rem;
       border-radius:10px;
       height:45vh;
-      width:50vh;
-      margin:auto;
+      text-align:center;
+      margin-left:10px;
+      margin-right:10px;
       background-color:#0E2148;
       color:white;
       overflow:hidden;
@@ -61,6 +73,7 @@
  <button>Show the Joke !</button>
   </div>
 <script>
+
   let URL ="https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single"
    
   let show_joke = document.getElementById("joke_msg");
@@ -69,16 +82,16 @@
  async function CallApi() {
     let Responce = await fetch(URL);
     let data = await Responce.json();
-    console.log(data);
+    // console.log(data);
 
     show_joke.innerText = data.joke+"🤣";
   }
   button.addEventListener('click',()=>{
     CallApi().then((res)=>{
-        console.log("Susseccfully Data Found",res);
+        console.log("All Clear");
   }).catch((err)=>{
-    console.log("Error !",err); 
-  });;
+    console.log("Error !"); 
+  });
   })
   //
 </script>
